@@ -1,0 +1,142 @@
+[
+  {
+    "id": "q01",
+    "question": "What is the VulnMind risk score for Log4Shell (CVE-2021-44228) and what ATT&CK techniques does it enable?",
+    "ground_truth": "CVE-2021-44228 (Log4Shell) is a critical JNDI injection vulnerability in Apache Log4j with CVSS 10.0. It enables remote code execution and maps to ATT&CK techniques including T1190 (Exploit Public-Facing Application) and T1059 (Command and Scripting Interpreter). EPSS score is extremely high indicating active exploitation in the wild.",
+    "expected_cves": ["CVE-2021-44228"],
+    "expected_techniques": ["T1190", "T1059"]
+  },
+  {
+    "id": "q02",
+    "question": "Which critical CVEs affect Microsoft Exchange Server published in 2021?",
+    "ground_truth": "ProxyLogon (CVE-2021-26855) and ProxyShell vulnerabilities affect Microsoft Exchange Server with critical CVSS scores. CVE-2021-26855 allows pre-authentication SSRF and chained with CVE-2021-27065 enables RCE.",
+    "expected_cves": ["CVE-2021-26855", "CVE-2021-27065"],
+    "expected_techniques": ["T1190"]
+  },
+  {
+    "id": "q03",
+    "question": "Explain the MITRE ATT&CK technique T1190 and which high-EPSS CVEs exploit it?",
+    "ground_truth": "T1190 (Exploit Public-Facing Application) involves adversaries exploiting weaknesses in internet-facing systems. High-EPSS CVEs exploiting this technique include Log4Shell, ProxyLogon, and various other critical RCE vulnerabilities in web servers and applications.",
+    "expected_cves": [],
+    "expected_techniques": ["T1190"]
+  },
+  {
+    "id": "q04",
+    "question": "What are the most pivotal CVEs in attack chains based on graph centrality?",
+    "ground_truth": "CVEs with high graph centrality appear in many attack chains across multiple vendors and map to widely-used ATT&CK techniques. Log4Shell, EternalBlue (MS17-010), and Heartbleed rank among the highest due to their broad impact across infrastructure.",
+    "expected_cves": ["CVE-2021-44228"],
+    "expected_techniques": []
+  },
+  {
+    "id": "q05",
+    "question": "What vulnerabilities have EPSS score above 0.9 and CVSS above 9.0?",
+    "ground_truth": "CVEs with both EPSS > 0.9 and CVSS > 9.0 represent the most immediately dangerous vulnerabilities. These include actively exploited critical RCE vulnerabilities with confirmed in-the-wild exploitation.",
+    "expected_cves": [],
+    "expected_techniques": []
+  },
+  {
+    "id": "q06",
+    "question": "How does CVE-2022-30190 (Follina) work and what is its attack chain?",
+    "ground_truth": "CVE-2022-30190 is a Microsoft Support Diagnostic Tool (MSDT) vulnerability exploited via Word documents. It maps to T1203 (Exploitation for Client Execution) and T1059 and has been used by nation-state actors in spear-phishing campaigns.",
+    "expected_cves": ["CVE-2022-30190"],
+    "expected_techniques": ["T1203", "T1059"]
+  },
+  {
+    "id": "q07",
+    "question": "What CWE weaknesses are most commonly associated with remote code execution vulnerabilities?",
+    "ground_truth": "RCE vulnerabilities commonly map to CWE-78 (OS Command Injection), CWE-119 (Buffer Overflow), CWE-502 (Deserialization), and CWE-787 (Out-of-bounds Write). These weaknesses are frequently exploited via T1059 and T1203.",
+    "expected_cves": [],
+    "expected_techniques": ["T1059", "T1203"]
+  },
+  {
+    "id": "q08",
+    "question": "What are the most critical VMware vulnerabilities and their risk profiles?",
+    "ground_truth": "VMware has several critical vulnerabilities including CVE-2021-21985 (vCenter CVSS 9.8), CVE-2022-22954 (Workspace ONE Access SSTI), and CVE-2021-22005 (vCenter arbitrary file upload). All have high EPSS scores indicating active exploitation.",
+    "expected_cves": ["CVE-2021-21985", "CVE-2022-22954"],
+    "expected_techniques": []
+  },
+  {
+    "id": "q09",
+    "question": "Explain the ProxyShell attack chain and which CVEs are involved.",
+    "ground_truth": "ProxyShell chains CVE-2021-34473 (pre-auth path confusion), CVE-2021-34523 (privilege escalation), and CVE-2021-31207 (arbitrary file write) to achieve unauthenticated RCE on Exchange servers. The chain maps to T1190 and T1078.",
+    "expected_cves": ["CVE-2021-34473", "CVE-2021-34523", "CVE-2021-31207"],
+    "expected_techniques": ["T1190", "T1078"]
+  },
+  {
+    "id": "q10",
+    "question": "What vulnerabilities are associated with the ATT&CK technique T1059.001 (PowerShell)?",
+    "ground_truth": "T1059.001 (PowerShell execution) is associated with various CVEs where vulnerabilities enable attackers to run PowerShell payloads. This includes vulnerabilities in Windows, Exchange, and web applications that allow command execution via PowerShell.",
+    "expected_cves": [],
+    "expected_techniques": ["T1059.001"]
+  },
+  {
+    "id": "q11",
+    "question": "What is the risk profile of Spring4Shell (CVE-2022-22965)?",
+    "ground_truth": "CVE-2022-22965 (Spring4Shell) is a critical RCE vulnerability in Spring Framework with CVSS 9.8. It maps to T1190 and CWE-94 (Code Injection). EPSS score reflects active scanning but lower exploitation than Log4Shell.",
+    "expected_cves": ["CVE-2022-22965"],
+    "expected_techniques": ["T1190"]
+  },
+  {
+    "id": "q12",
+    "question": "Which vendors have the most critical unpatched vulnerabilities in 2023?",
+    "ground_truth": "Based on CVE data, vendors with high critical vulnerability counts in 2023 include Microsoft, Cisco, VMware, and Fortinet. Assessment should consider both raw counts and EPSS-weighted exploitation likelihood.",
+    "expected_cves": [],
+    "expected_techniques": []
+  },
+  {
+    "id": "q13",
+    "question": "How does the knowledge graph connect CVE-2021-26084 (Confluence RCE) to broader attack campaigns?",
+    "ground_truth": "CVE-2021-26084 (Atlassian Confluence RCE) maps to T1190 and CWE-74 (Injection). Graph traversal reveals it affects Atlassian products and has been used in campaigns leveraging T1105 (Ingress Tool Transfer) and T1003 (OS Credential Dumping) post-exploitation.",
+    "expected_cves": ["CVE-2021-26084"],
+    "expected_techniques": ["T1190", "T1105"]
+  },
+  {
+    "id": "q14",
+    "question": "What authentication bypass vulnerabilities have CVSS 9.0+ and have been exploited in ransomware campaigns?",
+    "ground_truth": "Authentication bypass CVEs with CVSS 9.0+ exploited in ransomware include CVE-2021-20016 (SonicWall), CVE-2021-35587 (Oracle Access Manager), and various VPN appliance vulnerabilities. These map to T1078 and T1133.",
+    "expected_cves": [],
+    "expected_techniques": ["T1078", "T1133"]
+  },
+  {
+    "id": "q15",
+    "question": "Explain the detection strategy for CVEs mapped to T1055 (Process Injection).",
+    "ground_truth": "T1055 (Process Injection) detection focuses on monitoring for suspicious memory allocation, DLL loading, and process hollowing behaviors. CVEs enabling process injection should be prioritized for patching as they facilitate defense evasion and privilege escalation.",
+    "expected_cves": [],
+    "expected_techniques": ["T1055"]
+  },
+  {
+    "id": "q16",
+    "question": "What is the EPSS score for PrintNightmare (CVE-2021-34527) and what does it indicate?",
+    "ground_truth": "CVE-2021-34527 (PrintNightmare) is a Windows Print Spooler RCE vulnerability with high EPSS score indicating high probability of exploitation in the next 30 days. It maps to T1203 and has been widely exploited for lateral movement.",
+    "expected_cves": ["CVE-2021-34527"],
+    "expected_techniques": ["T1203"]
+  },
+  {
+    "id": "q17",
+    "question": "Which critical Fortinet vulnerabilities have been exploited by APT groups?",
+    "ground_truth": "Fortinet SSL-VPN vulnerabilities including CVE-2018-13379 (path traversal), CVE-2022-40684 (auth bypass), and CVE-2023-27997 (heap overflow RCE) have been exploited by APT groups for initial access, mapping to T1190 and T1133.",
+    "expected_cves": ["CVE-2022-40684"],
+    "expected_techniques": ["T1190", "T1133"]
+  },
+  {
+    "id": "q18",
+    "question": "What are the top 5 CVEs by VulnMind composite risk score?",
+    "ground_truth": "Top VulnMind risk CVEs combine high CVSS, high EPSS exploitation probability, and high graph centrality. Expected to include Log4Shell, ProxyLogon, EternalBlue-related, and other widely-exploited critical vulnerabilities.",
+    "expected_cves": [],
+    "expected_techniques": []
+  },
+  {
+    "id": "q19",
+    "question": "How does SSRF (CWE-918) map to ATT&CK techniques and what are notable CVEs?",
+    "ground_truth": "CWE-918 (SSRF) maps to T1090 (Proxy) and T1190. Notable CVEs include CVE-2021-26855 (Exchange SSRF enabling ProxyLogon), CVE-2022-22947 (Spring Cloud Gateway), and various cloud service vulnerabilities enabling metadata service access.",
+    "expected_cves": ["CVE-2021-26855"],
+    "expected_techniques": ["T1090", "T1190"]
+  },
+  {
+    "id": "q20",
+    "question": "What remediation steps should be prioritized for an organization running unpatched Apache, Exchange, and VMware?",
+    "ground_truth": "Priority patches: Apache Log4j (Log4Shell), Exchange ProxyLogon/ProxyShell chain, VMware vCenter vulnerabilities. Prioritization should weight EPSS score for active exploitation, CVSS for impact, and asset criticality. Apply network segmentation and WAF rules while patching.",
+    "expected_cves": ["CVE-2021-44228", "CVE-2021-26855", "CVE-2021-21985"],
+    "expected_techniques": []
+  }
+]

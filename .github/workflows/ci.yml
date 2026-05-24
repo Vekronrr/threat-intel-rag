@@ -1,0 +1,88 @@
+name: VulnMind CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Lint (ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Run ruff
+        run: ruff check . --select E,F,W --ignore E501
+
+  syntax-check:
+    name: Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt --quiet
+
+      - name: Compile all modules
+        run: |
+          python -m py_compile \
+            ingestion/fetch_nvd.py \
+            ingestion/fetch_mitre.py \
+            ingestion/fetch_epss.py \
+            ingestion/fetch_kev.py \
+            ingestion/fetch_threat_actors.py \
+            ingestion/chunker.py \
+            ingestion/embedder.py \
+            graph/build_graph.py \
+            graph/graph_retriever.py \
+            graph/risk_scorer.py \
+            rag/retriever.py \
+            rag/reranker.py \
+            rag/prompt_builder.py \
+            rag/agent.py \
+            rag/faithfulness_checker.py \
+            api/main.py \
+            api/models.py \
+            api/cache.py \
+            api/surface_analyzer.py \
+            monitoring/drift_detector.py
+
+      - name: All files compile cleanly
+        run: echo "Syntax check passed"
+
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install test dependencies
+        run: pip install pytest pytest-asyncio pydantic structlog networkx numpy
+
+      - name: Run tests
+        run: |
+          if [ -d "tests/" ]; then
+            pytest tests/ -v --tb=short
+          else
+            echo "No tests directory yet — skipping"
+          fi
